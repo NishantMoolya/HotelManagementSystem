@@ -1,3 +1,7 @@
-/build
+/build/analyst.o
+/build/hotel_managers.o
+/build/inventory_managers.o
+/build/raw_item_managers.o
+/build/main.o
 /.vscode
-/bin
+/bin/main.exe
