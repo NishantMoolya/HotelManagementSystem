@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "../includes/raw_item_managers.h"
+#include "../includes/analyst.h"
 
 struct raw_item* addRawMaterials(){
     struct raw_item *raw_new = NULL;
@@ -12,12 +13,12 @@ struct raw_item* addRawMaterials(){
     return raw_new;
 }
 
-void displayRawMaterials(){
+void displayRawMaterials(struct hotel_menu_schema *menu_head){
     char item_name[SIZE];
     printf("\nEnter the dish name:");
     scanf("%s",item_name);
     struct hotel_menu_schema *temp;
-    temp = searchDish(item_name);
+    temp = searchDish(menu_head,item_name);
     struct raw_item *ptr_to_rawlist;
     ptr_to_rawlist = temp->link;
     while (ptr_to_rawlist != NULL)

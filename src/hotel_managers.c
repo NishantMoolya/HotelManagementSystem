@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include "../includes/hotel_managers.h"
 #include "../includes/raw_item_managers.h"
+#include "../includes/analyst.h"
 
-struct hotel_menu_schema *menu_head,*menu_tail;
-
-void createItem(){
+void createItem(struct hotel_menu_schema **menu_head,struct hotel_menu_schema **menu_tail){
     struct raw_item *temp = NULL,*raw_tail;
     struct hotel_menu_schema *menu_new = (struct hotel_menu_schema*)malloc(sizeof(struct hotel_menu_schema));
     printf("\nEnter the dish name:");
@@ -17,12 +17,12 @@ void createItem(){
     menu_new->next = NULL;
     menu_new->link = NULL;
     menu_new->sold_count = 0;
-    if (menu_head == NULL)
+    if (*menu_head == NULL)
     {
-        menu_head = menu_tail = menu_new;
+        *menu_head = *menu_tail = menu_new;
     }else{
-        menu_tail->next = menu_new;
-        menu_tail = menu_new;
+        (*menu_tail)->next = menu_new;
+        *menu_tail = menu_new;
     }
     printf("\nEnter the raw materials required to prepare %s\n",menu_new->dish_name);
     int choice = 1;
@@ -43,11 +43,11 @@ void createItem(){
     }
 }
 
-int removeItem(){
+int removeItem(struct hotel_menu_schema **menu_head,struct hotel_menu_schema **menu_tail){
     char item_name[SIZE];
     struct hotel_menu_schema *temp,*prev;
-    temp = menu_head;
-    if (menu_head == NULL)
+    temp = *menu_head;
+    if (*menu_head == NULL)
     {
         printf("\nNo dish available in the menu");
     }else
@@ -58,13 +58,13 @@ int removeItem(){
     {
         if (!strcmp(temp->dish_name,item_name))
         {
-            if (temp == menu_head && menu_head->next == NULL)
+            if (temp == *menu_head && (*menu_head)->next == NULL)
             {
-                menu_head = menu_tail = NULL;
-            }else if (temp == menu_tail)
+                *menu_head = *menu_tail = NULL;
+            }else if (temp == *menu_tail)
             {
                 prev->next = NULL;
-                menu_tail = prev;
+                *menu_tail = prev;
             }else{
                 prev->next = temp->next;
             }
@@ -80,7 +80,7 @@ int removeItem(){
     }
 }
 
-void displayItem(){
+void displayItem(struct hotel_menu_schema *menu_head){
     struct hotel_menu_schema *temp;
     int i = 0;
     if (menu_head == NULL)
@@ -97,26 +97,7 @@ void displayItem(){
     }
 }
 
-struct hotel_menu_schema* searchDish(char name[]){
-    if(menu_head == NULL){
-        printf("\nNo dish available in menu");
-        return NULL;
-    }else{
-    struct hotel_menu_schema *dish;
-    dish = menu_head;
-    while (dish != NULL)
-    {
-        if(!strcmp(dish->dish_name,name)){
-            return dish;
-        }
-        dish = dish->next;
-    }
-    printf("\nInvalid dish name");
-    return NULL;
-    }
-}
-
-int updateItemPrice(){
+int updateItemPrice(struct hotel_menu_schema *menu_head){
     struct hotel_menu_schema *temp;
     char item_name[SIZE];
     int new_price;
@@ -124,7 +105,7 @@ int updateItemPrice(){
     scanf("%s",item_name);
     printf("\nEnter the new price:");
     scanf("%d",&new_price);
-    temp = searchDish(item_name);
+    temp = searchDish(menu_head,item_name);
     if (temp != NULL)
     {
         temp->price = new_price;
@@ -132,12 +113,12 @@ int updateItemPrice(){
     }
 }
 
-int getItemDetails(){
+int getItemDetails(struct hotel_menu_schema *menu_head){
     struct hotel_menu_schema *temp;
     char item_name[SIZE];
     printf("\nEnter the dish name:");
     scanf("%s",item_name);
-    temp = searchDish(item_name);
+    temp = searchDish(menu_head,item_name);
     if (temp != NULL)
     {
         printf("\nDish Name:\t%s\nPrice:\t%d\nProfit Margin:\t%.2f",temp->dish_name,temp->price,temp->profit_percentage);
@@ -146,7 +127,9 @@ int getItemDetails(){
     }
 }
 
-void createOrderAndBill(){
+
+//only here is the problem above done
+void createOrderAndBill(struct hotel_menu_schema *menu_head){
     char ordered_dish[10][15];
     int ordered_plates[10];
     int i = 0;
@@ -165,7 +148,7 @@ void createOrderAndBill(){
     int total_amount = 0;
     for (int j = 0; j < i; j++)
     {
-        total_amount += totalAmount(ordered_dish[j],ordered_plates[j]);
+        total_amount += totalAmount(menu_head,ordered_dish[j],ordered_plates[j]);
         printf("\n%s\t\t%d",ordered_dish[j],ordered_plates[j]);
         printf("\nTotal:\t\t%d",total_amount);
     }

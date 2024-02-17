@@ -3,10 +3,9 @@
 
 #include "raw_item_schema.h"
 #include "hotel_menu_schema.h"
-#include "common.h"
 
 struct raw_item* addRawMaterials();
-void displayRawMaterials();
+void displayRawMaterials(struct hotel_menu_schema *menu_head);
 void removeRawMaterials(struct raw_item *link);
 
 #endif

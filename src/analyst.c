@@ -1,6 +1,24 @@
 #include<stdio.h>
 #include "../includes/analyst.h"
-#include "../includes/common.h"
+
+struct hotel_menu_schema* searchDish(struct hotel_menu_schema *menu_head,char name[]){
+    if(menu_head == NULL){
+        printf("\nNo dish available in menu");
+        return NULL;
+    }else{
+    struct hotel_menu_schema *dish;
+    dish = menu_head;
+    while (dish != NULL)
+    {
+        if(!strcmp(dish->dish_name,name)){
+            return dish;
+        }
+        dish = dish->next;
+    }
+    printf("\nInvalid dish name");
+    return NULL;
+    }
+}
 
 void searchRaw(struct raw_item *head,int sold_count){
     struct inventory_schema *temp;
@@ -29,10 +47,10 @@ void deductor(struct hotel_menu_schema *menu_head){
     }
 }
 
-int totalAmount(char dishname[],int quantity){
+int totalAmount(struct hotel_menu_schema *menu_head,char dishname[],int quantity){
     struct hotel_menu_schema *temp;
     int total_amount;
-    temp = searchDish(dishname);
+    temp = searchDish(menu_head,dishname);
     total_amount = (temp->price)*quantity;
     temp->sold_count += quantity;
     return total_amount;
