@@ -145,7 +145,7 @@ int createOrderAndBill(struct hotel_menu_schema *menu_head){
     int amount = 0;
     printf("\n\t\tBill\t\t\n");
     printf("\n-------------------------------------------");
-    printf("Dish\t\tQuantity\t\tAmount\n");
+    printf("\nDish\t\tQuantity\t\tAmount\n");
     printf("\n-------------------------------------------");
     for (int j = 0; j < i; j++)
     {
