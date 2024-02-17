@@ -3,6 +3,10 @@
 
 #include "inventory_schema.h"
 
-struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]);
+void addStock(struct inventory_schema **inventory_head,struct inventory_schema **inventory_tail);
+void removeStock(struct inventory_schema **inventory_head,struct inventory_schema **inventory_tail);
+void displayStock(struct inventory_schema *inventory_head);
+void updateQuantity(struct inventory_schema *inventory_head);
+void getStockDetails(struct inventory_schema *inventory_head);
 
 #endif

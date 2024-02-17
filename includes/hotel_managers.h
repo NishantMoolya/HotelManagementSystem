@@ -9,6 +9,6 @@ int removeItem(struct hotel_menu_schema **menu_head,struct hotel_menu_schema **m
 void displayItem(struct hotel_menu_schema *menu_head);
 int updateItemPrice(struct hotel_menu_schema *menu_head);
 int getItemDetails(struct hotel_menu_schema *menu_head);
-void createOrderAndBill(struct hotel_menu_schema *menu_head);
+int createOrderAndBill(struct hotel_menu_schema *menu_head);
 
 #endif

@@ -127,9 +127,7 @@ int getItemDetails(struct hotel_menu_schema *menu_head){
     }
 }
 
-
-//only here is the problem above done
-void createOrderAndBill(struct hotel_menu_schema *menu_head){
+int createOrderAndBill(struct hotel_menu_schema *menu_head){
     char ordered_dish[10][15];
     int ordered_plates[10];
     int i = 0;
@@ -144,12 +142,19 @@ void createOrderAndBill(struct hotel_menu_schema *menu_head){
     scanf("%d",&choice);
     i++;
     }
-    printf("\nList of:\n");
     int total_amount = 0;
+    int amount = 0;
+    printf("\n\t\tBill\t\t\n");
+    printf("-------------------------------------------");
+    printf("Dish\t\tQuantity\t\tAmount\n");
+    printf("-------------------------------------------");
     for (int j = 0; j < i; j++)
     {
-        total_amount += totalAmount(menu_head,ordered_dish[j],ordered_plates[j]);
-        printf("\n%s\t\t%d",ordered_dish[j],ordered_plates[j]);
-        printf("\nTotal:\t\t%d",total_amount);
+        amount = totalAmount(menu_head,ordered_dish[j],ordered_plates[j]);
+        total_amount += amount;
+        printf("\n%s\t\t%d\t\t%d",ordered_dish[j],ordered_plates[j],amount);
     }
+    printf("--------------------------------------------");
+    printf("\nTotal:\t\t\t\t%d",total_amount);
+    return total_amount;
 }

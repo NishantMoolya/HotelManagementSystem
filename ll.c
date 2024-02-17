@@ -58,6 +58,41 @@ void displayList(Node *head) {
     printf("NULL\n");
 }
 
+Node* traverseDish(Node *head){
+    if (head == NULL)
+    {
+        printf("\nNo dish available in menu");
+        return NULL;
+    }else{
+        return head;
+    }
+}
+
+void topdish(Node *menu_head){
+    Node *temp,*top;
+    int count = 0;
+    if (menu_head == NULL)
+    {
+       printf("\nNo dish available in menu");
+    }else{
+        temp = menu_head;
+        while (temp != NULL)
+        {
+            if(top->data < temp->data){
+                top = temp;
+            }
+            temp = temp->next;
+        }
+        printf("\nTop selling dish is: and %d plates were sold",top->data);
+    }
+}
+
+int add(){
+    int a,b;
+    printf("\nEnter two numbers:");
+    scanf("%d%d",&a,&b);
+    return a+b;
+}
 int main() {
     Node *head = NULL;
 
@@ -70,13 +105,22 @@ int main() {
 
     // Display the initial list
     displayList(head);
-
+    Node *temp = traverseDish(head);
+    while (temp != NULL)
+    {
+        printf("%d->\t",temp->data);
+        temp = traverseDish(temp->next);
+    }
+    
+    //topdish(head);
     // Remove a node from the list
     removeNode(&head, 3);
-
+    topdish(head);
     // Display the list after removal
     displayList(head);
-
+    int res = 0;
+    res += add();
+    printf("\nresult = %d",res);
     // Free memory
     while (head != NULL) {
         Node *temp = head;

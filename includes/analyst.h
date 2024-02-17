@@ -10,5 +10,7 @@ int totalAmount(struct hotel_menu_schema *menu_head,char dishname[],int quantity
 void deductor(struct hotel_menu_schema *menu_head,struct inventory_schema *inventory_head);
 void searchRaw(struct raw_item *head,struct inventory_schema *inventory_head,int sold_count);
 struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]);
+void profit(struct hotel_menu_schema *menu_head);
+void topdish(struct hotel_menu_schema *menu_head);
 
 #endif

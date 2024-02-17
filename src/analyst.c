@@ -75,3 +75,68 @@ int totalAmount(struct hotel_menu_schema *menu_head,char dishname[],int quantity
     temp->sold_count += quantity;
     return total_amount;
 }
+
+void profit(struct hotel_menu_schema *menu_head){
+    struct hotel_menu_schema *temp;
+    float profit = 0;
+    if (menu_head == NULL)
+    {
+        printf("\nNo dish available in menu");
+    }else{
+        temp = menu_head;
+        while (temp != NULL)
+        {
+            if (temp->sold_count)
+            {
+                profit += ((temp->profit_percentage)/100)*(temp->price);
+            }
+            temp = temp->next;
+        }
+        printf("\nTotal profit to business: Rs %.2f",profit);
+    }
+}
+
+void topdish(struct hotel_menu_schema *menu_head){
+    struct hotel_menu_schema *temp,*top;
+    int count = 0;
+    if (menu_head == NULL)
+    {
+       printf("\nNo dish available in menu");
+    }else{
+        temp = menu_head;
+        while (temp != NULL)
+        {
+            if(top->sold_count < temp->sold_count){
+                top = temp;
+            }
+            temp = temp->next;
+        }
+        printf("\nTop selling dish is: %s and %d plates were sold",top->dish_name,top->sold_count);
+    }
+}
+// void sort(struct hotel_menu_schema **menu_head){   //sort functionality is incomplete(selection sort)
+//     struct hotel_menu_schema *temp,*temp1,*temp2,*prev;
+//     char topdish[3][15];
+//     if (*menu_head == NULL)
+//     {
+//         printf("\nNo dish available in menu");
+//     }else{
+//         temp = *menu_head;
+//         while (temp != NULL)
+//         {
+//             while (temp1 != NULL)
+//             {
+//                 if(temp->sold_count < temp1->sold_count){
+//                     temp2 = temp->next;
+//                     temp->next = temp1->next;
+//                     temp1->next = temp2;
+//                     prev->next = temp;
+//                 }
+//                 prev = temp1;
+//                 temp1 = temp1->next;
+//             }
+//             temp = temp->next;
+//         }
+        
+//     }
+// }

@@ -1,22 +1,9 @@
 #include<stdio.h>
-#include<string.h>
 #include "../includes/inventory_schema.h"
+#include "../includes/analyst.h"
 
-struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]){
-    if(inventory_head == NULL){
-        printf("\nNo raw items available in inventory");
-        return NULL;
-    }else{
-    struct inventory_schema *raw;
-    raw = inventory_head;
-    while (raw != NULL)
-    {
-        if(!strcmp(raw->item_name,raw_material)){
-            return raw;
-        }
-        raw = raw->next;
-    }
-    printf("\nInvalid dish name");
-    return NULL;
-    }
-}
+void addStock(struct inventory_schema **inventory_head,struct inventory_schema **inventory_tail){}
+void removeStock(struct inventory_schema **inventory_head,struct inventory_schema **inventory_tail){}
+void displayStock(struct inventory_schema *inventory_head){}
+void updateQuantity(struct inventory_schema *inventory_head){}
+void getStockDetails(struct inventory_schema *inventory_head){}
