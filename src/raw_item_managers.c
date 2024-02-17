@@ -8,7 +8,7 @@ struct raw_item* addRawMaterials(){
     raw_new = (struct raw_item*)malloc(sizeof(struct raw_item));
     printf("\nEnter the name of raw material required:");
     scanf("%s",raw_new->raw_item_name);
-    printf("\nEnter the quantity required:");
+    printf("Enter the quantity required:");
     scanf("%d",&raw_new->quantity_used);
     raw_new->next = NULL;
     return raw_new;

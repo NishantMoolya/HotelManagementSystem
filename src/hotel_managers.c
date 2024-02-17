@@ -10,9 +10,9 @@ void createItem(struct hotel_menu_schema **menu_head,struct hotel_menu_schema **
     struct hotel_menu_schema *menu_new = (struct hotel_menu_schema*)malloc(sizeof(struct hotel_menu_schema));
     printf("\nEnter the dish name:");
     scanf("%s",menu_new->dish_name);
-    printf("\nEnter the price of %s:",menu_new->dish_name);
+    printf("Enter the price of %s:",menu_new->dish_name);
     scanf("%d",&menu_new->price);
-    printf("\nEnter the profit margin of %s:",menu_new->dish_name);
+    printf("Enter the profit margin of %s:",menu_new->dish_name);
     scanf("%f",&menu_new->profit_percentage);
     menu_new->next = NULL;
     menu_new->link = NULL;
@@ -29,7 +29,6 @@ void createItem(struct hotel_menu_schema **menu_head,struct hotel_menu_schema **
     while (choice)
     {
     temp = addRawMaterials();
-    printf("%s",temp);
     if (menu_new->link == NULL)
     {
         menu_new->link = temp;
@@ -145,16 +144,16 @@ int createOrderAndBill(struct hotel_menu_schema *menu_head){
     int total_amount = 0;
     int amount = 0;
     printf("\n\t\tBill\t\t\n");
-    printf("-------------------------------------------");
+    printf("\n-------------------------------------------");
     printf("Dish\t\tQuantity\t\tAmount\n");
-    printf("-------------------------------------------");
+    printf("\n-------------------------------------------");
     for (int j = 0; j < i; j++)
     {
         amount = totalAmount(menu_head,ordered_dish[j],ordered_plates[j]);
         total_amount += amount;
         printf("\n%s\t\t%d\t\t%d",ordered_dish[j],ordered_plates[j],amount);
     }
-    printf("--------------------------------------------");
+    printf("\n--------------------------------------------");
     printf("\nTotal:\t\t\t\t%d",total_amount);
     return total_amount;
 }
