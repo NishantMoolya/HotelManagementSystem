@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 #include "../includes/analyst.h"
 
 struct hotel_menu_schema* searchDish(struct hotel_menu_schema *menu_head,char name[]){
@@ -20,12 +21,31 @@ struct hotel_menu_schema* searchDish(struct hotel_menu_schema *menu_head,char na
     }
 }
 
-void searchRaw(struct raw_item *head,int sold_count){
+struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]){
+    if(inventory_head == NULL){
+        printf("\nNo raw items available in inventory");
+        return NULL;
+    }else{
+    struct inventory_schema *raw;
+    raw = inventory_head;
+    while (raw != NULL)
+    {
+        if(!strcmp(raw->item_name,raw_material)){
+            return raw;
+        }
+        raw = raw->next;
+    }
+    printf("\nInvalid dish name");
+    return NULL;
+    }
+}
+
+void searchRaw(struct raw_item *head,struct inventory_schema *inventory_head,int sold_count){
     struct inventory_schema *temp;
     if(head != NULL){
         while (head != NULL)
         {
-            temp = searchInventory(head->raw_item_name);
+            temp = searchInventory(inventory_head,head->raw_item_name);
             if(temp != NULL){
                 temp->item_stock -= (head->quantity_used)*sold_count;
             }
@@ -35,13 +55,13 @@ void searchRaw(struct raw_item *head,int sold_count){
     }
 }
 
-void deductor(struct hotel_menu_schema *menu_head){
+void deductor(struct hotel_menu_schema *menu_head,struct inventory_schema *inventory_head){
     struct hotel_menu_schema *temp;
     temp = menu_head;
     while (temp != NULL)
     {
         if(temp->sold_count){
-        searchRaw(temp->link,temp->sold_count);
+        searchRaw(temp->link,inventory_head,temp->sold_count);
         }
         temp = temp->next;
     }

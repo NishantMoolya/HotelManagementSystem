@@ -1,9 +1,8 @@
 #include<stdio.h>
+#include<string.h>
 #include "../includes/inventory_schema.h"
 
-struct inventory_schema *inventory_head,*inventory_tail;
-
-struct inventory_schema* searchInventory(char raw_material[]){
+struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]){
     if(inventory_head == NULL){
         printf("\nNo raw items available in inventory");
         return NULL;
