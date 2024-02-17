@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include "../includes/raw_item_managers.h"
 #include "../includes/analyst.h"
 
