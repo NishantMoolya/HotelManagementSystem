@@ -30,8 +30,10 @@ int main(){
             break;
         case 3: analyst();
             break;
-        default: printf("\nBye see you next time-Created by Nishant Moolya");
-                return 0;
+        default: freeMenuMemory(menu_head);
+                 freeInventoryMemory(inventory_head); 
+                 printf("\nBye see you next time-Created by Nishant Moolya");
+                 return 0;
         }
         printf("\n=============================================================================================");
     }

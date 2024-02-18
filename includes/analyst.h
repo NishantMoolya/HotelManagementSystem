@@ -12,5 +12,8 @@ void searchRaw(struct raw_item *head,struct inventory_schema *inventory_head,int
 struct inventory_schema* searchInventory(struct inventory_schema *inventory_head,char raw_material[]);
 void profit(struct hotel_menu_schema *menu_head);
 void topdish(struct hotel_menu_schema *menu_head);
+void freeRawMemory(struct raw_item *head);
+void freeMenuMemory(struct hotel_menu_schema *head);
+void freeInventoryMemory(struct inventory_schema *head);
 
 #endif

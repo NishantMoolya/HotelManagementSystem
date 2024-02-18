@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include "../includes/analyst.h"
 
 struct hotel_menu_schema* searchDish(struct hotel_menu_schema *menu_head,char name[]){
@@ -140,3 +141,47 @@ void topdish(struct hotel_menu_schema *menu_head){
         
 //     }
 // }
+
+void freeRawMemory(struct raw_item *head){
+    struct raw_item *temp;
+    if (head != NULL)
+    {
+        while (head != NULL)
+        {
+            temp = head;
+            head = head->next;
+            free(temp);
+        }
+        
+    }
+    
+}
+
+void freeMenuMemory(struct hotel_menu_schema *head){
+    struct hotel_menu_schema *temp;
+    if (head != NULL)
+    {
+        while (head != NULL)
+        {
+            freeRawMemory(head->link);
+            temp = head;
+            head = head->next;
+            free(temp);
+        }
+    }
+    
+}
+
+void freeInventoryMemory(struct inventory_schema *head){
+    struct inventory_schema *temp;
+    if (head != NULL)
+    {
+        while (head != NULL)
+        {
+            temp = head;
+            head = head->next;
+            free(temp);
+        }
+    }
+    
+}
