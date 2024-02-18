@@ -106,7 +106,7 @@ int analyst(){
     while (1)
     {
         printf("\n=============================================================================================");
-        printf("\n1.Get total cash collected\n2.Show profit\n3.Show Top dish sold\n4.Exit\n");
+        printf("\n1.Get total cash collected\n2.Show profit\n3.Show Top dish sold\n4.Update Inventory\n5.Exit\n");
         printf("\n=============================================================================================");
         printf("\nEnter your choice:");
         scanf("%d",&choice);
@@ -118,7 +118,9 @@ int analyst(){
             break;
         case 3: topdish(menu_head);
             break;
-        case 4: return 0;
+        case 4: deductor(menu_head,inventory_head);
+            break;
+        case 5: return 0;
         default: printf("\nInvalid Choice!...");
         }
         printf("\n=============================================================================================");

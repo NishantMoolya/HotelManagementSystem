@@ -35,7 +35,7 @@ struct inventory_schema* searchInventory(struct inventory_schema *inventory_head
         }
         raw = raw->next;
     }
-    printf("\nInvalid dish name");
+    printf("\nInvalid raw item name");
     return NULL;
     }
 }
@@ -88,7 +88,7 @@ void profit(struct hotel_menu_schema *menu_head){
         {
             if (temp->sold_count)
             {
-                profit += ((temp->profit_percentage)/100)*(temp->price);
+                profit += (((temp->profit_percentage)/100)*(temp->price)*(temp->sold_count));
             }
             temp = temp->next;
         }
