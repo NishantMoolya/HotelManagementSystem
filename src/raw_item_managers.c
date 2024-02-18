@@ -24,7 +24,7 @@ void displayRawMaterials(struct hotel_menu_schema *menu_head){
     ptr_to_rawlist = temp->link;
     while (ptr_to_rawlist != NULL)
     {
-        printf("\n%s %d",ptr_to_rawlist->raw_item_name,ptr_to_rawlist->quantity_used);
+        printf("\nItem Name: %s\tQuantity used: %d",ptr_to_rawlist->raw_item_name,ptr_to_rawlist->quantity_used);
         ptr_to_rawlist = ptr_to_rawlist->next;
     }
 }

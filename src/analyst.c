@@ -66,6 +66,7 @@ void deductor(struct hotel_menu_schema *menu_head,struct inventory_schema *inven
         }
         temp = temp->next;
     }
+    printf("\nInventory updated successfully.");
 }
 
 int totalAmount(struct hotel_menu_schema *menu_head,char dishname[],int quantity){
@@ -169,7 +170,7 @@ void freeMenuMemory(struct hotel_menu_schema *head){
             free(temp);
         }
     }
-    
+    printf("\nBye see you next time-Created by Nishant Moolya");
 }
 
 void freeInventoryMemory(struct inventory_schema *head){

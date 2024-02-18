@@ -144,16 +144,16 @@ int createOrderAndBill(struct hotel_menu_schema *menu_head){
     int total_amount = 0;
     int amount = 0;
     printf("\n\t\tBill\t\t\n");
-    printf("\n-------------------------------------------");
-    printf("\nDish\t\tQuantity\t\tAmount\n");
-    printf("\n-------------------------------------------");
+    printf("\n------------------------------------------------------------");
+    printf("\nDish\tQuantity\tAmount");
+    printf("\n------------------------------------------------------------");
     for (int j = 0; j < i; j++)
     {
         amount = totalAmount(menu_head,ordered_dish[j],ordered_plates[j]);
         total_amount += amount;
         printf("\n%s\t\t%d\t\t%d",ordered_dish[j],ordered_plates[j],amount);
     }
-    printf("\n--------------------------------------------");
+    printf("\n------------------------------------------------------------");
     printf("\nTotal:\t\t\t\t%d",total_amount);
     return total_amount;
 }

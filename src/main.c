@@ -32,7 +32,6 @@ int main(){
             break;
         default: freeMenuMemory(menu_head);
                  freeInventoryMemory(inventory_head); 
-                 printf("\nBye see you next time-Created by Nishant Moolya");
                  return 0;
         }
         printf("\n=============================================================================================");
